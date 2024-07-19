@@ -37,9 +37,22 @@ const Image = styled.img`
     display: flex;
     width: 120px;
     height: 80px;
+    flex-shrink: 0;
     object-fit: cover;
 `;
+const Placeholder = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color:white;
+    width: 120px;
+    height: 80px;
+    flex-shrink: 0;//이미지 크기가 줄어들지않게 하기위함 
+    background-color: gray;
+`;
 const NewsCard = ({ cardNum }) => {
+    //props로 cardNum에 입력한 숫자만큼 뉴스 출력 
     const [news, setNews] = useState([]);
 
     const getNews = async () => {
@@ -55,15 +68,17 @@ const NewsCard = ({ cardNum }) => {
         getNews();
     }, []);
         
-    const filteredNews = news.filter(article => article.urlToImage);
-
+    // const filteredNews = news.filter(article => article.urlToImage);
+    //뉴스 api의 값들 전체가 이미지가 없는경우도 있어서 이 필터는 폐기
     return (
         <CardWrapper>
             <ContentBox>
-                {filteredNews.slice(0, cardNum).map((article, index) => (
+                {news.slice(0, cardNum).map((article, index) => (
                     <CardBox key={index}>
-                        {article.urlToImage && (
-                        <Image src={article.urlToImage} alt={article.title} />
+                        {article.urlToImage ? (
+                            <Image src={article.urlToImage} alt={article.title} />
+                        ) : (
+                            <Placeholder>기본이미지</Placeholder>// 이미지가 없는 경우 회색 박스 출력
                         )}
                         <CardText>{article.title}</CardText>
                     </CardBox>
