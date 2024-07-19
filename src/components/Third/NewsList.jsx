@@ -10,7 +10,7 @@ const NewsList = () => {
       <Title title="멋사 NEWS"/>
       <Menu menus={menuItems}/>
       
-      <NewsCard cardNum={10}/>
+      <NewsCard cardNum={20}/>
       {/* 원하는 개수만큼 뉴스출력가능  */}
     </>
   ) 

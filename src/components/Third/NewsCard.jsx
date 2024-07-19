@@ -74,6 +74,7 @@ const NewsCard = ({ cardNum }) => {
         <CardWrapper>
             <ContentBox>
                 {news.slice(0, cardNum).map((article, index) => (
+                    // console.log("불러온다: ", index, article.title),
                     <CardBox key={index}>
                         {article.urlToImage ? (
                             <Image src={article.urlToImage} alt={article.title} />
