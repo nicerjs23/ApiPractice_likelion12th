@@ -57,7 +57,8 @@ const NewsCard = ({ cardNum }) => {
 
     const getNews = async () => {
         try {
-        const articles = await fetchNews();
+        const response = await fetchNews();
+        const articles = response.data.articles; // 전체 응답 객체에서 articles 추출
         setNews(articles);
         } catch (error) {
         console.error("Error fetching news in NewsCard:", error);

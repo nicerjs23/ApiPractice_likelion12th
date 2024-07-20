@@ -9,7 +9,8 @@ export const fetchNews = async () => {
         `https://newsapi.org/v2/top-headlines?country=kr&apiKey=${VITE_NEWS_API_KEY}`
         );
         // console.log("테스트: ",response);
-        return response.data.articles;
+        return response;
+        // return response.data.articles;
     } catch (error) {
         console.error("Error fetching news:", error);
         throw error;
